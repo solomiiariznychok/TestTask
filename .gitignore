@@ -4,3 +4,4 @@ gradlew.bat
 buid/*
 .gradle/*
 gradle/*
+out/*
