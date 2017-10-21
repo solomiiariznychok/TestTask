@@ -9,6 +9,7 @@ public class ApplicationSources {
             this.baseUrl = new String();
             this.implicitTimeOut = 11;
             this.browserName = new String();
+
         }
 
         public static ApplicationSources get() {

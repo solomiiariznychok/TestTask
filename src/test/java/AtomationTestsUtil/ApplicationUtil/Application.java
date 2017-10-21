@@ -2,6 +2,7 @@ package AtomationTestsUtil.ApplicationUtil;
 
 import java.util.concurrent.TimeUnit;
 
+import AtomationTestsUtil.Pages.IndividualsPage;
 import AtomationTestsUtil.Pages.StartPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,10 +39,10 @@ public class Application {
     }
 
 
-    public StartPage loadChrome() {
+    public IndividualsPage loadChrome() {
         initChromeBrowser();
         driver.get(applicationSources.getBaseUrl());
-        return new StartPage();
+        return new IndividualsPage();
     }
 
     public void quit() {
