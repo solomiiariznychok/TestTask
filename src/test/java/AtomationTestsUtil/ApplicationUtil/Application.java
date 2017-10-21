@@ -29,7 +29,8 @@ public class Application {
     }
 
     private void initChromeBrowser() {
-        System.setProperty("webdriver.chrome.driver", "C://Users//riznychok//Downloads//chrome64_50.0.2661.75//chrome64_50.0.2661.75//chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "C://Users//riznychok//Downloads//chrome64_50.0.2661.75//chrome64_50.0.2661.75//chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/Users/mtustanovskyy/Downloads/chromedriver");
         if (driver == null) {
             driver = new ChromeDriver();
             driver.manage().timeouts()
