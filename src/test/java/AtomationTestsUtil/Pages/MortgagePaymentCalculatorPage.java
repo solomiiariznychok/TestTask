@@ -15,11 +15,11 @@ public class MortgagePaymentCalculatorPage {
     private WebElement sliderPrixPropriete;
 
     @FindBy(xpath = "//button[@id='PrixProprieteMinus'] /parent::*//div[@class='slider-handle min-slider-handle custom']")
-    private  WebElement pointer;
+    private  WebElement purchasePriceSlider;
 
     @FindBy(xpath = "//div[contains(@id,'exempleMontantPropriete')]" +
             "/parent::div/parent::*//div[contains(@class, 'slider-tick-label')]/span[contains(text(),'500 K')]/..")
-    private WebElement verifyPointerPosition;
+    private WebElement purchasePriceSliderMovementPoint;
 
     @FindBy(css = "div [class='col-med-1-2 col-lg-1-3'] div [class = 'selectric'] p[class = 'label']")
     private WebElement amortizationDropDownList;
@@ -45,11 +45,14 @@ public class MortgagePaymentCalculatorPage {
     @FindBy(xpath = "//div[@class='selectric-scroll'] //ul //li//text()[normalize-space(.)='weekly']/parent::*")
     private WebElement paymentFrequencyValue;
 
-    @FindBy(id = "MiseDeFond")
+    @FindBy(css = "input[id=MiseDeFond]")
     private WebElement downPaymentTextBox;
 
-    @FindBy(id = "paiement-resultats")
+    @FindBy(css = "span[id='paiement-resultats']")
     private WebElement weeklyPaymentsLabelResult;
+
+    @FindBy(id = "PrixProprieteMinus")
+    private WebElement decreasePurchaceButton;
 
     public MortgagePaymentCalculatorPage() {
         PageFactory.initElements(driver, this);
@@ -60,12 +63,12 @@ public class MortgagePaymentCalculatorPage {
         return this.increasePurchaceButton;
     }
 
-    public WebElement getPointer() {
-        return this.pointer;
+    public WebElement getPurchasePriceSlider() {
+        return this.purchasePriceSlider;
     }
 
-    public WebElement getVerifyPointerPosition() {
-        return this.verifyPointerPosition;
+    public WebElement getPurchasePriceSliderMovementPoint() {
+        return this.purchasePriceSliderMovementPoint;
     }
 
     public WebElement getAmortizationDropDownList() {
@@ -107,6 +110,8 @@ public class MortgagePaymentCalculatorPage {
 
     public WebElement getWeeklyPaymentsLabelResult(){return this.weeklyPaymentsLabelResult; }
 
+    public WebElement getDecreasePurchaceButton() {return this.decreasePurchaceButton; }
+
     public void clickPaymentFrequencyDropDownList(){
         getPaymentFrequencyDropDownList().click();
     }
@@ -115,13 +120,13 @@ public class MortgagePaymentCalculatorPage {
         getPaymentFrequencyValue().click();
     }
 
-    public String getPointerLeftPercentage() {
-        String style = this.getPointer().getAttribute("style");
+    public String getPurchasePriceSliderStyleAttribute() {
+        String style = this.getPurchasePriceSlider().getAttribute("style");
         return style.substring(style.lastIndexOf("left: ") + "left: ".length(), style.lastIndexOf('%'));
     }
 
     public String getSliderSelectionWidthPercentage() {
-        String style = this.getPointer().getAttribute("style");
+        String style = this.getPurchasePriceSlider().getAttribute("style");
         return style.substring(style.lastIndexOf("width: ") + "width: ".length(), style.lastIndexOf('%'));
     }
 
@@ -129,9 +134,9 @@ public class MortgagePaymentCalculatorPage {
         return this.getSliderPrixPropriete().getAttribute("value");
     }
 
-    public void verifyPointer() {
+    public void verifyPurchasePriceSliderMovement() {
         builder.
-                clickAndHold(getPointer()).moveToElement(getVerifyPointerPosition()).click()
+                clickAndHold(getPurchasePriceSlider()).moveToElement(getPurchasePriceSliderMovementPoint()).click()
                 .build().perform();
     }
 
@@ -139,6 +144,13 @@ public class MortgagePaymentCalculatorPage {
         builder.
                 click(getIncreasePurchaceButton()).click(getIncreasePurchaceButton()).build().perform();
 
+    }
+
+    public void clickDecreasePurchaceButton() {
+        builder.
+                click(getDecreasePurchaceButton()).click(getDecreasePurchaceButton()).build().perform();
+               // click(getPurchasePriceSlider()).moveToElement(getDecreasePurchaceButton()).doubleClick()
+               // .build().perform();
     }
 
     public void clickAmortizationDropDownList(){
@@ -158,7 +170,7 @@ public class MortgagePaymentCalculatorPage {
         clickPaymentFrequencyDropDownList();
         clickPaymentFrequencyValue();
     }
-    public void inputDownPaymentTextBox(String inputValue) {
+    public void inputDownPaymentTextBox(String input) {
         builder.
                 click(getDownPaymentTextBox()).sendKeys("50000").sendKeys(Keys.RETURN).build().perform();
 
@@ -169,7 +181,8 @@ public class MortgagePaymentCalculatorPage {
     }
 
     public void clickCalculateButton(){
-        getCalculateButton().click();
+        builder.moveToElement(getCalculateButton()).click(getCalculateButton()).sendKeys(Keys.RETURN)
+                .build().perform();
     }
 
     public String getTextWeeklyPaymentsLabelResult(){

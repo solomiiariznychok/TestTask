@@ -11,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Application {
 
-
     private ApplicationSources applicationSources;
     public static WebDriver driver;
 
@@ -43,7 +42,7 @@ public class Application {
     public IAIndividualsPage loadChrome() {
         initChromeBrowser();
         driver.get(applicationSources.getBaseUrl());
-        return new IAIndividualsPage(driver);
+        return new IAIndividualsPage();
     }
 
     public void quit() {

@@ -1,38 +1,22 @@
 package AtomationTestsUtil.UITestSuite;
-
 import AtomationTestsUtil.ApplicationUtil.Application;
-
 import AtomationTestsUtil.ApplicationUtil.ApplicationSourcesRepository;
 import AtomationTestsUtil.Pages.IAIndividualsPage;
-import AtomationTestsUtil.Pages.LoansTabBox;
-
 import AtomationTestsUtil.Pages.MortagageProductsPage;
 import AtomationTestsUtil.Pages.MortgagePaymentCalculatorPage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import AtomationTestsUtil.Pages.IndividualsPage;
-
-public class SmokeTest {
+public class VerifyBasePaymentFunctionality {
 
     public static Application application;
     public static IAIndividualsPage IAIndividualsPage;
     public static MortagageProductsPage mortagageProductsPage;
     public static MortgagePaymentCalculatorPage mortgagePaymentCalculatorPage;
+    public static final String EXPECTED_PURCHASE_PRICE_VALUE = "500000";
+    public static final String DOWN_PAYMENT_VALUE = "50000";
     public static final String WEEKLY_PAYMENTS_LABEL_RESULT = "$ 842.47";
-    public static final String Const1 = "24.8668";
-    public static final String Const2 = "24.8668";
-    public static LoansTabBox loansTabBox;
-    public static IndividualsPage individualsPage;
-
-
-    @BeforeTest
-    public void beforeTest() {
-    }
 
 
     @BeforeClass
@@ -41,34 +25,28 @@ public class SmokeTest {
     }
 
     @Test
-    public void tryScroll() {
-//        System.setProperty("webdriver.chrome.driver", "/Users/mtustanovskyy/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://ia.ca/mortgage-payment-calculator");
-        ((JavascriptExecutor)
-                driver).executeScript("window.scrollBy(600,1000)");
-    }
-
-    @Test
-    public void test()  {
+    public void verifyWeeklyPaymentsResult()  {
         IAIndividualsPage = application.loadChrome();
         IAIndividualsPage.clickLoanTab();
         mortagageProductsPage = IAIndividualsPage.clickMortagageLink();
         mortgagePaymentCalculatorPage = mortagageProductsPage.clickCalculatePaymentButton();
-        mortgagePaymentCalculatorPage.verifyPointer();
-        Assert.assertTrue(Double.parseDouble(mortgagePaymentCalculatorPage.getPointerLeftPercentage()) > 0, "");
-        System.out.println(mortgagePaymentCalculatorPage.getPointerLeftPercentage());
+        mortgagePaymentCalculatorPage.verifyPurchasePriceSliderMovement();
+        Assert.assertTrue(Double.parseDouble(mortgagePaymentCalculatorPage.getSliderSelectionWidthPercentage()) > 0, "Purchase Price Slider was not movement correctly");
+        Assert.assertTrue(Double.parseDouble(mortgagePaymentCalculatorPage.getPurchasePriceSliderStyleAttribute()) > 0, "Purchase Price Slider was not movement correctly");
+        //Assert.assertEquals(Double.parseDouble(mortgagePaymentCalculatorPage.getSliderSelectionWidthPercentage()),
+         // mortgagePaymentCalculatorPage.getPurchasePriceSliderStyleAttribute(), "Purchase Price Slider was not movement correctly");
+        System.out.println(mortgagePaymentCalculatorPage.getPurchasePriceSliderStyleAttribute());
         System.out.println(mortgagePaymentCalculatorPage.getSliderSelectionWidthPercentage());
-        /*mortgagePaymentCalculatorPage.clickIncreasePurchaceButton();
-        Assert.assertEquals(mortgagePaymentCalculatorPage.getSliderPrixProprieteValue(), "500000");
-        mortgagePaymentCalculatorPage.inputDownPaymentTextBox(" 50000");
+        mortgagePaymentCalculatorPage.clickDecreasePurchaceButton();
+        mortgagePaymentCalculatorPage.clickIncreasePurchaceButton();
+        Assert.assertEquals(mortgagePaymentCalculatorPage.getSliderPrixProprieteValue(), EXPECTED_PURCHASE_PRICE_VALUE);
+        mortgagePaymentCalculatorPage.inputDownPaymentTextBox(DOWN_PAYMENT_VALUE);
         mortgagePaymentCalculatorPage.checkAmortizationYearsValue();
         mortgagePaymentCalculatorPage.checkPaymentFrequencyValue();
         mortgagePaymentCalculatorPage.inputInterestRateTextBox();
         mortgagePaymentCalculatorPage.clickCalculateButton();
-        System.out.println("YYYY " + mortgagePaymentCalculatorPage.getTextWeeklyPaymentsLabelResult());
         Assert.assertEquals(mortgagePaymentCalculatorPage.getTextWeeklyPaymentsLabelResult(), WEEKLY_PAYMENTS_LABEL_RESULT, "Weekly payments result is not correct");
-        application.close();*/
+        application.close();
     }
 }
 
