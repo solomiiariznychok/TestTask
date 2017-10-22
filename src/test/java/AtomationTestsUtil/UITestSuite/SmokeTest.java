@@ -10,14 +10,12 @@ import AtomationTestsUtil.Pages.MortagageProductsPage;
 import AtomationTestsUtil.Pages.MortgagePaymentCalculatorPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static AtomationTestsUtil.ApplicationUtil.Application.driver;
-import static java.awt.SystemColor.window;
+import AtomationTestsUtil.Pages.IndividualsPage;
 
 public class SmokeTest {
 
@@ -28,6 +26,13 @@ public class SmokeTest {
     public static final String WEEKLY_PAYMENTS_LABEL_RESULT = "$ 842.47";
     public static final String Const1 = "24.8668";
     public static final String Const2 = "24.8668";
+    public static LoansTabBox loansTabBox;
+    public static IndividualsPage individualsPage;
+
+
+    @BeforeTest
+    public void beforeTest() {
+    }
 
 
     @BeforeClass

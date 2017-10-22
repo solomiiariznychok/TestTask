@@ -3,8 +3,6 @@ package AtomationTestsUtil.ApplicationUtil;
 import java.util.concurrent.TimeUnit;
 
 import AtomationTestsUtil.Pages.IAIndividualsPage;
-import AtomationTestsUtil.Pages.MortgagePaymentCalculatorPage;
-import AtomationTestsUtil.Pages.StartPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
