@@ -2,8 +2,12 @@ package AtomationTestsUtil.ApplicationUtil;
 
 import java.util.concurrent.TimeUnit;
 
+import AtomationTestsUtil.Pages.IAIndividualsPage;
+import AtomationTestsUtil.Pages.MortgagePaymentCalculatorPage;
 import AtomationTestsUtil.Pages.StartPage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -29,7 +33,6 @@ public class Application {
     }
 
     private void initChromeBrowser() {
-//        System.setProperty("webdriver.chrome.driver", "C://Users//riznychok//Downloads//chrome64_50.0.2661.75//chrome64_50.0.2661.75//chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", "/Users/mtustanovskyy/Downloads/chromedriver");
         if (driver == null) {
             driver = new ChromeDriver();
@@ -39,10 +42,10 @@ public class Application {
     }
 
 
-    public StartPage loadChrome() {
+    public IAIndividualsPage loadChrome() {
         initChromeBrowser();
         driver.get(applicationSources.getBaseUrl());
-        return new StartPage();
+        return new IAIndividualsPage(driver);
     }
 
     public void quit() {
@@ -55,6 +58,11 @@ public class Application {
         if (driver != null) {
             driver.close();
         }
+    }
+
+    public static void  windowScrollToWebElement(WebElement element) {
+        ((JavascriptExecutor)
+                driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
 

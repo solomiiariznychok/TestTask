@@ -15,6 +15,6 @@ public class ApplicationSourcesRepository {
         }
 
         public ApplicationSources getURLByChrome() {
-            return ApplicationSources.get().setBaseUrl("http://ia.ca/").setImplicitTimeOut(10).setBrowserName("chrome");
+            return ApplicationSources.get().setBaseUrl("http://ia.ca/individuals").setImplicitTimeOut(10).setBrowserName("chrome");
         }
     }
