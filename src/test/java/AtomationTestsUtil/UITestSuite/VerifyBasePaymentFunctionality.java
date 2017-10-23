@@ -7,7 +7,12 @@ import AtomationTestsUtil.Pages.MortgagePaymentCalculatorPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.annotations.Title;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
+@Title("Report regarding UI test suite")
 public class VerifyBasePaymentFunctionality {
 
     public static Application application;
@@ -24,6 +29,14 @@ public class VerifyBasePaymentFunctionality {
         application = new Application(ApplicationSourcesRepository.get().getURLByChrome());
     }
 
+    @Severity(SeverityLevel.BLOCKER)
+    @Title("Verify weekly payments result")
+    @Description("Verify weekly payments test include the following verification steps:" +
+            "      go to https://ia.ca/ page" +
+            "      click on the Loan button" +
+            "      click on Mortagages page" +
+            "      click on Calculate your payments " +
+            "      input values into Purchase ")
     @Test
     public void verifyWeeklyPaymentsResult()  {
         IAIndividualsPage = application.loadChrome();

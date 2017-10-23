@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1508751146401" stop="1508751170100" version="1.5.4" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>Default Suite : com</name>
+    <title>Default Suite : com</title>
+    <test-cases>
+        <test-case start="1508751146454" stop="1508751170097" status="passed">
+            <name>verifyWeeklyPaymentsResult</name>
+            <title>Verify weekly payments result</title>
+            <description type="text">Verify weekly payments test include the following verification steps:      go to https://ia.ca/ page      click on the Loan button      click on Mortagages page      click on Calculate your payments       input values into Purchase </description>
+            <steps/>
+            <attachments/>
+            <labels>
+                <label name="testSuite" value="Default Suite"/>
+                <label name="testGroup" value="com"/>
+                <label name="testClass" value="AtomationTestsUtil.UITestSuite.VerifyBasePaymentFunctionality"/>
+                <label name="testMethod" value="verifyWeeklyPaymentsResult"/>
+                <label name="severity" value="blocker"/>
+                <label name="host" value="localhost"/>
+                <label name="thread" value="27335@localhost.main(1)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="framework" value="TestNG"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>
