@@ -3,7 +3,7 @@
 <suite name="Suite">
     <!-- 3 ERROR 5 WARNING 7 INFO -->
     <listeners>
-        <listener class-name="AtomationTestsUtil.CustomReporter.CustomReporter"/>
+        <listener class-name="AtomationTestsUtil.TestReport.TestReport"/>
     </listeners>
     <test verbose="1" name="Test">
         <parameter name="number" value="1" />

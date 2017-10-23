@@ -3,6 +3,7 @@ package AtomationTestsUtil.ApplicationUtil;
 import java.util.concurrent.TimeUnit;
 
 import AtomationTestsUtil.Pages.IAIndividualsPage;
+import AtomationTestsUtil.ResourcesUtil.ChromeDriverProperty;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,12 +17,12 @@ public class Application {
 
     public Application(ApplicationSources applicationSources) {
         this.applicationSources = applicationSources;
-        System.out.println("\t*** Application Sources");
+        System.out.println("\t*** Application Sources ***");
         System.out.println("\t" + applicationSources.getBaseUrl());
         System.out.println("\t" + applicationSources.getBrowserName());
     }
 
-    private void initBrowser() {
+    private void initFireFoxBrowser() {
         if (driver == null) {
             driver = new FirefoxDriver();
             driver.manage().timeouts()
@@ -30,14 +31,13 @@ public class Application {
     }
 
     private void initChromeBrowser() {
-        System.setProperty("webdriver.chrome.driver", "/Users/mtustanovskyy/Downloads/chromedriver");
+        new ChromeDriverProperty().loadChromeDriverProperties();
         if (driver == null) {
             driver = new ChromeDriver();
             driver.manage().timeouts()
                     .implicitlyWait(applicationSources.getImplicitTimeOut(), TimeUnit.SECONDS);
         }
     }
-
 
     public IAIndividualsPage loadChrome() {
         initChromeBrowser();

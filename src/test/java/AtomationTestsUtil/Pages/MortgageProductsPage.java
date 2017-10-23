@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static AtomationTestsUtil.ApplicationUtil.Application.driver;
 
-public class MortgageProductsPage {
+public class MortgageProductsPage extends TopPage{
 
     @FindBy(xpath = "//a[text()='Calculate your payments']")
     WebElement calculatePaymentsButton;

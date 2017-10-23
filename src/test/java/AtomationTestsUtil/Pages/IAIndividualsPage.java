@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static AtomationTestsUtil.ApplicationUtil.Application.driver;
 
-public class IAIndividualsPage {
+public class IAIndividualsPage extends TopPage{
 
     @FindBy(css = "a[href*='/individuals/pret']")
     private WebElement LoanTab;

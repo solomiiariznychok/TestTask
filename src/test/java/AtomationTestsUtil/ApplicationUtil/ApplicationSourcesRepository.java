@@ -10,11 +10,11 @@ public class ApplicationSourcesRepository {
             return new ApplicationSourcesRepository();
         }
 
-        public ApplicationSources getURLByFirefox() {
-            return ApplicationSources.get().setBaseUrl("www.ia.ca").setImplicitTimeOut(10).setBrowserName("firefox");
+        public ApplicationSources getURLByFireFox() {
+            return ApplicationSources.get().setBaseUrl("http://ia.ca").setImplicitTimeOut(30).setBrowserName("firefox");
         }
 
         public ApplicationSources getURLByChrome() {
-            return ApplicationSources.get().setBaseUrl("http://ia.ca").setImplicitTimeOut(10).setBrowserName("chrome");
+            return ApplicationSources.get().setBaseUrl("http://ia.ca").setImplicitTimeOut(30).setBrowserName("chrome");
         }
     }

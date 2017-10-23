@@ -1,8 +1,8 @@
-package AtomationTestsUtil.CustomReporter;
+package AtomationTestsUtil.TestReport;
 
 import org.testng.*;
 
-    public class CustomReporter implements ITestListener {
+    public class TestReport implements ITestListener {
 
         @Override
         public void onStart(ITestContext context) {

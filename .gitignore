@@ -5,3 +5,4 @@ buid/*
 .gradle/*
 gradle/*
 out/*
+/build/

@@ -7,7 +7,7 @@ public class ApplicationSources {
 
         public ApplicationSources() {
             this.baseUrl = new String();
-            this.implicitTimeOut = 11;
+            this.implicitTimeOut = 30;
             this.browserName = new String();
         }
 

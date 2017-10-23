@@ -5,6 +5,33 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "ru.d10xa:gradle-allure-plugin:0.5.5"
+    }
+}
+
+apply plugin: 'ru.d10xa.allure'
+
+allure {
+    aspectjweaver = true
+
+    junit = false
+    testNG = true
+    spock = false
+
+    geb = false
+
+    allureResultsDir = "$buildDir/allure-results"
+    allureReportDir = "$buildDir/allure-report"
+
+    clean = true
+}
+
 repositories {
     mavenCentral()
 }
@@ -21,11 +48,19 @@ dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '6.11'
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
     testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.5.4'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-java-annotations
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-java-annotations', version: '1.5.4'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-commons
+    testCompile group: 'ru.yandex.qatools.allure', name: 'allure-commons', version: '1.5.4'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-report-data
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-report-data', version: '1.5.4'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-report-builder
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-report-builder', version: '2.3'
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
     // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.12'
-    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-testng-adaptor
-    compile group: 'ru.yandex.qatools.allure', name: 'allure-testng-adaptor', version: '1.5.4'
-    // https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-report-data
+
 }
 
 task runVerifyWeeklyPaymentsResultTest(type: Test, dependsOn: testClasses) {
@@ -37,9 +72,6 @@ configure(runVerifyWeeklyPaymentsResultTest) {
     description = 'Run runVerifyWeeklyPaymentsResultTest test for UI suite test'
 }
 
-test.doFirst {
-   jvmArgs "-javaagent:${configurations.agent.singleFile}"
-}
 
 test {
     useTestNG()
