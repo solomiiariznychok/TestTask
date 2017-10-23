@@ -7,12 +7,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import static AtomationTestsUtil.ApplicationUtil.Application.driver;
 
-public class MortagageProductsPage {
+public class MortgageProductsPage {
 
     @FindBy(xpath = "//a[text()='Calculate your payments']")
     WebElement calculatePaymentsButton;
 
-    public MortagageProductsPage() {
+    public MortgageProductsPage() {
         PageFactory.initElements(driver, this);
 
     }
